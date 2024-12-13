@@ -48,4 +48,4 @@ volumes:
 
 networks:
   mern-app:
-    driver: local
+    driver: bridge

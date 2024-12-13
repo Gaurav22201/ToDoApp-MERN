@@ -7,7 +7,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const mongoURI = "mongodb://127.0.0.1:27017/crud"
+// const mongoURI = "mongodb://127.0.0.1:27017/crud"
+const mongoURI = "mongodb://mongodb:27017/crud"
 
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
