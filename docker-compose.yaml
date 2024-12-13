@@ -1,0 +1,51 @@
+name: mern-app
+
+services:
+  mongodb:
+    image: mongo:7.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - mern-app    
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - MONGODB_URL=mongodb://127.0.0.1:27017/crud
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    networks:
+      - mern-app   
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: 
+      context: ./todolist
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./todolist/.env
+    volumes:
+      - ./todolist:/app
+      - /app/node_modules
+    networks:
+      - mern-app
+    ports:
+      - 5173:5173
+    depends_on:
+      - api
+
+volumes:
+  mongodata:
+
+networks:
+  mern-app:
+    driver: local
