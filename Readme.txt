@@ -2,7 +2,11 @@ Clone the GIT repository using
 
 "git clone https://github.com/Gaurav22201/ToDoApp-MERN.git"
 
-Once cloned open the directory where docker-compose.yml is present using cmd and run:
+Once cloned open the directory where docker-compose.yml is present using cmd with:
+
+"cd ToDoApp-MERN/"
+
+and run:
 
 "docker compose up --build"
 
